@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class Main {
+class Homework {
     public static void main(String[] args) {
         task1();
 
