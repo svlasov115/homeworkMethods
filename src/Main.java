@@ -29,7 +29,9 @@ class Homework {
         System.out.print("\n");
     }
 
-    public static void checkingTheApplicationVersion(int clientOS, int clientDeviseYear, int currentYear) {
+    public static void checkingTheApplicationVersion(int clientOS, int clientDeviseYear) {
+        int currentYear = LocalDate.now().getYear();
+
         if (clientOS == 0 && clientDeviseYear >= currentYear) {
             System.out.println("Установите версию приложения для iOS по ссылке.");
         } else if (clientOS == 0 && clientDeviseYear < currentYear) {
@@ -48,35 +50,37 @@ class Homework {
 
         int clientOS = 1;
         int clientDeviseYear = 2015;
-        int currentYear = LocalDate.now().getYear();
 
-        checkingTheApplicationVersion(clientOS, clientDeviseYear, currentYear);
+        checkingTheApplicationVersion(clientOS, clientDeviseYear);
 
         System.out.print("\n");
     }
 
-    public static void calculationOfTheNumberOfDaysOfDelivery(int deliveryDistance) {
+    public static int calculationOfTheNumberOfDaysOfDelivery(int deliveryDistance) {
         int dayOfDelivery = 1;
 
         if (deliveryDistance <= 20) {
-            System.out.println("Потребуется дней: " + dayOfDelivery + ".");
+            return dayOfDelivery;
         } else if (deliveryDistance > 20 && deliveryDistance <= 60) {
             dayOfDelivery++;
-            System.out.println("Потребуется дней: " + dayOfDelivery + ".");
+
         } else if (deliveryDistance > 60 && deliveryDistance <= 100) {
             dayOfDelivery = dayOfDelivery + 2;
-            System.out.println("Потребуется дней: " + dayOfDelivery + ".");
-        } else {
-            System.out.println("Свыше 100 км доставки нет.");
+        } else if (deliveryDistance < 0 || deliveryDistance >= 100) {
+            dayOfDelivery = -1;
         }
+        return dayOfDelivery;
     }
 
     public static void task3() {
         System.out.println("Задача 3");
+        int dayOfDelivery = calculationOfTheNumberOfDaysOfDelivery(95);
 
-        int deliveryDistance = 95;
-
-        calculationOfTheNumberOfDaysOfDelivery(deliveryDistance);
+        if (dayOfDelivery != -1) {
+            System.out.println("Потребуется дней: " + dayOfDelivery + ".");
+        } else {
+            System.out.println("Свыше 100 км доставки нет.");
+        }
     }
 }
 
